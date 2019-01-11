@@ -12,4 +12,9 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
+  buscar(){
+
+    
+  }
+
 }
