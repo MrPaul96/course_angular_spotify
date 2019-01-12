@@ -15,7 +15,8 @@ export class HomeComponent implements OnInit {
   nuevasCanciones: any[] = [];
   data: any;
   loading: boolean;
-
+  error: boolean;
+  mensajeError: string;
 
   constructor(private http: HttpClient, private spotify: SpotifyService) {
     /**** -- Introduccion peticiones HTTP ***********/
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
        }
      );*/
 
+    this.error = false;
 
     this.loading = true;
     this.spotify.getNewReleases().subscribe(
@@ -35,6 +37,14 @@ export class HomeComponent implements OnInit {
         this.nuevasCanciones = data;
         this.loading = false;
         console.log(this.nuevasCanciones);
+      },
+      (errorServicio) =>{
+          
+
+        this.loading = false;
+        this.error = true;
+        this.mensajeError = errorServicio.error.error.message;
+
       }
     );
   }
