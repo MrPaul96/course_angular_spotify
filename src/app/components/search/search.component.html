@@ -2,6 +2,8 @@
 
   <div class="col">
 
-     <input type="text" (keyup)="buscar()" placeholder="Buscar artista..." class="form-control">
+    <input #termino type="text" (keyup)="buscar(termino.value)" placeholder="Buscar artista..." class="form-control">
   </div>
 </div>
+<app-loading *ngIf="loading" class="m-5"></app-loading>
+<app-tarjetas *ngIf="!loading" [items]="artistas" ></app-tarjetas>
