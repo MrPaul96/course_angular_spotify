@@ -1,36 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tarjetas',
-  templateUrl: './tarjetas.component.html',
-  styleUrls: ['./tarjetas.component.css']
+  templateUrl: './tarjetas.component.html'
 })
-export class TarjetasComponent implements OnInit {
-
-
+export class TarjetasComponent {
   @Input() items: any[];
 
-  constructor(private router: Router
-  ) {
-  }
-
-  ngOnInit() {
+  constructor(private router: Router) {
   }
 
   verArtista(item: any) {
-
-    console.log(item);
-    let artistaId;
-    if (item.type === 'artist') {
-      artistaId = item.id;
-    }
-    else {
-      artistaId = item.artists[0].id;
-    }
-
+    const artistaId = item.type === 'artist' ? item.id : item.artists[0].id;
     this.router.navigate(['/artist', artistaId]);
-
   }
-
 }
